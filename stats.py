@@ -1,3 +1,6 @@
+character_log_book = {}
+items_list = []
+
 def get_book_text(file_path):
     with open(file_path) as f:
         opened = f.read()
@@ -10,14 +13,20 @@ def get_num_words():
 
 def get_characters():
     opened = get_book_text("frankenstein.txt")
-    character_log_book = {}
     for i in opened:
         lower_only = i.lower()
         if lower_only in character_log_book:
             character_log_book[lower_only] += 1
         else:
-            character_log_book[lower_only] = 1 
-    sort_items = sorted(character_log_book.items())
+            character_log_book[lower_only] = 1
     return character_log_book
 
-get_characters()
+def sort_on(items):
+    return items["num"]
+
+
+def into_list(dict_list):
+    for character, number in dict_list.items():
+        items_list.append({"char": character, "num": number})
+    items_list.sort(reverse=True, key=sort_on)
+    return items_list

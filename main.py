@@ -1,4 +1,4 @@
-from stats import get_num_words, get_characters
+from stats import get_num_words, get_characters, into_list
 
 def get_book_text(file_path):
     with open(file_path) as f:
@@ -8,6 +8,7 @@ def get_book_text(file_path):
 def main():
     #get_book_text("frankenstein.txt")
     get_num_words()
-    print(get_characters())
+    #print(get_characters())
+    print(into_list(get_characters()))
 
 main()
