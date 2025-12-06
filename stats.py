@@ -1,5 +1,4 @@
 character_log_book = {}
-items_list = []
 
 def get_book_text(file_path):
     with open(file_path) as f:
@@ -9,7 +8,7 @@ def get_book_text(file_path):
 def get_num_words():
     book = get_book_text("frankenstein.txt")
     split_words = book.split()
-    return print(f"Found {len(split_words)} total words")
+    return len(split_words)
 
 def get_characters():
     opened = get_book_text("frankenstein.txt")
@@ -24,9 +23,11 @@ def get_characters():
 def sort_on(items):
     return items["num"]
 
+def sorted_output(character_log_book):
+    temp_dictionary = {key: value for key, value in character_log_book.items() if key.isalpha()}
+    for item in sorted(temp_dictionary, key=temp_dictionary.get, reverse=True):
+        print(f"{item}: {temp_dictionary[item]}")
 
-def into_list(dict_list):
-    for character, number in dict_list.items():
-        items_list.append({"char": character, "num": number})
-    items_list.sort(reverse=True, key=sort_on)
-    return items_list
+
+#    return items_list
+#print(into_list(get_characters()))
